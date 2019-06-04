@@ -36,7 +36,7 @@
 
 		}
 
-		protected function text_component($title_xy, $title_text, $content_xy, $content_width, $content_text)
+		protected function text_component($title_xy, $title_text, $content_xy, $content_width, $content_text, $content_alignment = 'L')
 		{
 			$this->setXY($title_xy[0], $title_xy[1]);
 
@@ -45,7 +45,7 @@
 
 			$this->setXY($content_xy[0], $content_xy[1]);
 			$this->SetFont('Helvetica', 'B', 8);
-			$this->Cell($content_width, 0.5, $content_text, 'B, L', 0, 'L');
+			$this->Cell($content_width, 0.5, $content_text, 'B, L', 0, $content_alignment);
 		}
 
 		protected function client()
@@ -70,8 +70,6 @@
 			$this->text_component([7.5, 3.5], '(+) Mora/multa', [7.5, 3.8], 3.5, '');
 			$this->text_component([10.5, 3.5], '(+) Outros acréscimos', [10.5, 3.8], 3.5, '');
 			$this->text_component([13.5, 3.5], '(=) Valor cobrado', [13.5, 3.8], 6.5, '');
-
-			$this->text_component([1, 4.2], 'Pagador', [1, 4.5], 19, 'Nome completo do pagador');
 
 			$this->text_component([1, 4.2], 'Pagador', [1, 4.5], 19, 'Nome completo do pagador');
 
@@ -102,6 +100,70 @@
 		protected function company()
 		{
 			$this->_header(false);
+
+			$this->text_component([1, 8.7], 'Local de pagamento', [1, 9], 14, 'Pagável em qualquer banco até o vencimento');
+			$this->text_component([15, 8.7], 'Vencimento', [15, 9], 5, '00/00/0000', 'R');
+
+			$this->text_component([1, 9.5], 'Beneficiário', [1, 9.8], 14, 'Nome completo do beneficiário');
+			$this->text_component([15, 9.5], 'Agência/código do beneficiário', [15, 9.8], 5, '0000/000000-0', 'R');
+
+			$this->text_component([1, 10.3], 'Data do documento', [1, 10.6], 4, '00/00/0000');
+			$this->text_component([5, 10.3], 'Nº Documento', [5, 10.6], 4, '0000');
+			$this->text_component([9, 10.3], 'Espécie doc.', [9, 10.6], 2, 'Real');
+			$this->text_component([11, 10.3], 'Aceite', [11, 10.6], 1, '');
+			$this->text_component([12, 10.3], 'Data processamento', [12, 10.6], 3, '00/00/0000');
+			$this->text_component([15, 10.3], 'Nosso Número', [15, 10.6], 5, '00000000000000', 'R');
+
+			$this->text_component([1, 11.1], 'Uso do banco', [1, 11.4], 4, '');
+			$this->text_component([5, 11.1], 'Espécie', [5, 11.4], 4, 'R$');
+			$this->text_component([9, 11.1], 'Quantidade', [9, 11.4], 4, '');
+			$this->text_component([12, 11.1], 'Valor documento', [12, 11.4], 3, '');
+			$this->text_component([15, 11.1], 'Valor documento', [15, 11.4], 5, '00,00', 'R');
+
+			$this->setXY(1, 11.9);
+			$this->Cell(14, 3.6, '', 1, 0, 'L');
+			$this->SetFont('Helvetica','', 6);
+			$this->setXY(1, 11.9);
+			$this->Cell(15, 0.5, 'Inscrições(Texto de responsabilidade do beneficiário)', 0, 0, 'L');
+			$this->SetFont('Helvetica','B', 7);
+			$this->setXY(1, 12.5);
+			$this->Cell(15, 0.5, 'Campo com as instruções n1', 0, 0, 'L');
+			$this->setXY(1, 13);
+			$this->Cell(15, 0.5, 'Campo com as instruções n2', 0, 0, 'L');
+			$this->setXY(1, 13.5);
+			$this->Cell(15, 0.5, 'Campo com as instruções n3', 0, 0, 'L');
+			$this->text_component([15, 11.9], '(-) Desconto/abatimentos', [15, 12.2], 5, '', 'R');
+			$this->text_component([15, 12.6], '(-) Outras deduções', [15, 12.9], 5, '', 'R');
+			$this->text_component([15, 13.3], '(+) Mora/multa', [15, 13.6], 5, '', 'R');
+			$this->text_component([15, 14], '(+) Outros acréscimos', [15, 14.3], 5, '', 'R');
+			$this->text_component([15, 14.7], '(=) Valor cobrado', [15, 15], 5, '', 'R');
+
+			$this->setXY(1, 15.5);
+			$this->Cell(19, 3.6, '', 1, 0, 'L');
+			$this->SetFont('Helvetica','', 6);
+			$this->setXY(1, 15.5);
+			$this->Cell(15, 0.5, 'Pagador', 0, 0, 'L');
+			$this->SetFont('Helvetica','B', 7);
+			$this->setXY(1, 15.9);
+			$this->Cell(15, 0.5, 'Nome completo do pagador', 0, 0, 'L');
+
+			$this->SetFont('Helvetica','', 8);
+			$this->setXY(1, 17);
+			$this->Cell(15, 0.5, 'Sacador/avalista', 0, 0, 'L');
+
+			$this->SetFont('Helvetica','B', 7);
+			$this->setXY(1, 18);
+			$this->Cell(15, 0.5, 'Endereço 1', 0, 0, 'L');
+			$this->setXY(1, 18.5);
+			$this->Cell(15, 0.5, 'Endereço 2', 0, 0, 'L');
+
+			$this->setXY(15, 18.6);
+			$this->Cell(2, 0.5, 'Cód. baixa', 'L', 0, 'L');
+
+			$this->setXY(14, 19);
+			$this->Cell(2, 0.5, 'Autenticação mecânica - Ficha de compensação', 0, 0, 'L');
+
+			$this->Image('images/bar_code.png', 1, 19.5, 12, 0);
 
 		}
 	}
