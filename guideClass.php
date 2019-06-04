@@ -17,29 +17,27 @@
 			$this->Output();
 		}
 
-		protected function _header()
+		protected function _header($client = true)
 		{
-			$this->Image('images/php.png', 1.5, -0.2, 3, 0);
+			$this->Image('images/alboom-preto.png', 1.5, $client ? 0.4 : 7.9, 3, 0);
 
-		    $this->SetXY(1, 0.5);
+		    $this->SetXY(1, $client ? 0.5 : 8);
 			$this->Cell(6, 0.7, '', 'B', 1, 'R');
 
 			$this->SetFont('Helvetica','B', 12);
 
-		    $this->SetXY(5, 0.5);
+		    $this->SetXY(5, $client ? 0.5 : 8);
 			$this->Cell(2, 0.7, '104-0', 'L, B', 1, 'C');
 
 			$this->SetFont('Helvetica','B', 10);
 
-		    $this->SetXY(7, 0.5);
+		    $this->SetXY(7, $client ? 0.5 : 8);
 			$this->Cell(13, 0.7, '00000.00000 00000.00000 00000.00000 0 00000000000000', 'L, B', 1, 'R');
 
 		}
 
 		protected function text_component($title_xy, $title_text, $content_xy, $content_width, $content_text)
 		{
-			$this->_header();
-
 			$this->setXY($title_xy[0], $title_xy[1]);
 
 			$this->SetFont('Helvetica','', 6);
@@ -52,6 +50,8 @@
 
 		protected function client()
 		{
+			$this->_header();
+
 			$this->text_component([1, 1.2], 'Beneficiário', [1, 1.4], 8, 'Beneficiário');
 			$this->text_component([9, 1.2], 'Agência/Código  do Beneficiário', [9, 1.4], 5, '0000/000000-0');
 			$this->text_component([14, 1.2], 'Espécie', [14, 1.4], 1, 'R$');
@@ -86,6 +86,11 @@
 
 		protected function split_here()
 		{
+			$this->setXY(17.6, 6);
+
+			$this->SetFont('Helvetica','', 6);
+			$this->Cell(15, 0.5, 'Corte na linha pontilhada', 0, 0, 'L');
+
 			for ($i=1; $i < 20; $i = $i + 0.3)
 			{
 				$this->setXY($i, 6);
@@ -96,6 +101,7 @@
 
 		protected function company()
 		{
+			$this->_header(false);
 
 		}
 	}
