@@ -1,5 +1,5 @@
 <?php
-	require 'guideClass.php';
+	require 'Payment_Slip.php';
 
-	$guide = new Guide();
+	$guide = new Payment_Slip();
 ?>

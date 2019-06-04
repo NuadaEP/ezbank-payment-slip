@@ -1,7 +1,7 @@
 <?php
 	require 'fpdf/fpdf.php';
 
-	class Guide extends FPDF
+	class Payment_Slip extends FPDF
 	{
 		public function __construct()
 		{
@@ -19,7 +19,7 @@
 
 		protected function _header($client = true)
 		{
-			$this->Image('images/alboom-preto.png', 1.5, $client ? 0.4 : 7.9, 3, 0);
+			$this->Image('images/logo_rendimento_boleto.gif', 1.5, $client ? 0.4 : 7.9, 3, 0);
 
 		    $this->SetXY(1, $client ? 0.5 : 8);
 			$this->Cell(6, 0.7, '', 'B', 1, 'R');
@@ -52,16 +52,16 @@
 		{
 			$this->_header();
 
-			$this->text_component([1, 1.2], 'Beneficiário', [1, 1.4], 8, 'Beneficiário');
-			$this->text_component([9, 1.2], 'Agência/Código  do Beneficiário', [9, 1.4], 5, '0000/000000-0');
-			$this->text_component([14, 1.2], 'Espécie', [14, 1.4], 1, 'R$');
-			$this->text_component([15, 1.2], 'Quantidade', [15, 1.4], 2, '');
-			$this->text_component([17, 1.2], 'Nosso número', [17, 1.4], 3, '00000000000000');
+			$this->text_component([1, 1.2], 'Beneficiário', [1, 1.5], 8, 'Beneficiário');
+			$this->text_component([9, 1.2], 'Agência/Código  do Beneficiário', [9, 1.5], 5, '0000/000000-0');
+			$this->text_component([14, 1.2], 'Espécie', [14, 1.5], 1, 'R$');
+			$this->text_component([15, 1.2], 'Quantidade', [15, 1.5], 2, '');
+			$this->text_component([17, 1.2], 'Nosso número', [17, 1.5], 3, '00000000000000');
 
-			$this->text_component([1, 1.9], 'Número do documento', [1, 2.2], 6, '0000');
-			$this->text_component([7, 1.9], 'CPF/CJPJ do beneficiário', [7, 2.2], 4, '000.000.000-00');
-			$this->text_component([11, 1.9], 'Vencimento', [11, 2.2], 4, '00/00/0000');
-			$this->text_component([15, 1.9], 'Valor do documento', [15, 2.2], 5, '00,00');
+			$this->text_component([1, 2], 'Número do documento', [1, 2.3], 6, '0000');
+			$this->text_component([7, 2], 'CPF/CJPJ do beneficiário', [7, 2.3], 4, '000.000.000-00');
+			$this->text_component([11, 2], 'Vencimento', [11, 2.3], 4, '00/00/0000');
+			$this->text_component([15, 2], 'Valor do documento', [15, 2.3], 5, '00,00');
 
 			$this->text_component([1, 2.7], 'Endereço do beneficiário', [1, 3], 19, 'Endereço completo do beneficiário');
 
